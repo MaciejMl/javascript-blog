@@ -8,7 +8,7 @@ const titleClickHandler = function (event) {
   /* [DONE] remove class 'active' from all article links  */
   const activeLinks = document.querySelectorAll('.titles a.active');
 
-  for (let activeLink of activeLinks) {
+  for (const activeLink of activeLinks) {
     activeLink.classList.remove('active');
   }
   /* [DONE] add class 'active' to the clicked link */
@@ -18,7 +18,7 @@ const titleClickHandler = function (event) {
   /* [DONE] remove class 'active' from all articles */
   const activeArticles = document.querySelectorAll('.post.active');
 
-  for (let activeArticle of activeArticles) {
+  for (const activeArticle of activeArticles) {
     activeArticle.classList.remove('active');
   }
   /* [DONE] get 'href' attribute from the clicked link */
@@ -44,7 +44,7 @@ const generateTitleLinks = function () {
   const articles = document.querySelectorAll(optArticleSelector);
 
   let html = '';
-  for (let article of articles) {
+  for (const article of articles) {
     /* read his "id" and save it to constant, */
     const articleId = article.getAttribute('id');
 
@@ -53,7 +53,7 @@ const generateTitleLinks = function () {
     /* get the title from the title element */
 
     /* create html code of this link and save it to constant, */
-    let linkHTML =
+    const linkHTML =
       '<li><a href="#' +
       articleId +
       '"><span>' +
@@ -69,7 +69,7 @@ const generateTitleLinks = function () {
   titleList.innerHTML = html;
   const links = document.querySelectorAll('.titles a');
   console.log(links);
-  for (let link of links) {
+  for (const link of links) {
     link.addEventListener('click', titleClickHandler);
   }
 };
