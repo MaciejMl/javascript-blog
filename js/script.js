@@ -33,7 +33,7 @@ const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
   optTitleListSelector = '.titles';
 
-const generateTitleLinks = function (event) {
+const generateTitleLinks = function () {
   //console.log(event);
 
   /* remove content of links list on the left side of the column  */
