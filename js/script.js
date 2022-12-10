@@ -1,5 +1,8 @@
 'use strict';
 
+const loogoo = document.querySelector('.logo-1');
+loogoo.style.color = 'firebrick';
+
 const titleClickHandler = function (event) {
   event.preventDefault();
   const clickedElement = this;
