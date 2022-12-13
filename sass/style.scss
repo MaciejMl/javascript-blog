@@ -76,6 +76,7 @@ body {
 }
 
 .posts {
+  position: relative;
   flex: 2 0 0;
 }
 
@@ -136,7 +137,9 @@ body {
 }
 
 /* Post */
-
+.cont {
+  //position: relative;
+}
 .post {
   //display: none;
   margin-top: 10px;
