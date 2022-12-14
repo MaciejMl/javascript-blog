@@ -89,6 +89,10 @@ body {
   border-radius: 5px;
   box-shadow: 5px 5px 5px, -5px -5px 5px rgba(255, 255, 255, 0.4);
 }
+.posts {
+  height: 100vh;
+  padding-left: 0;
+}
 
 /* Logo */
 
@@ -137,9 +141,6 @@ body {
 }
 
 /* Post */
-.cont {
-  //position: relative;
-}
 .post {
   //display: none;
   margin-top: 10px;
@@ -147,12 +148,14 @@ body {
   opacity: 0;
   transition: opacity 2s;
   position: absolute;
-  width: 380px;
+  width: 100%;
+  padding-left: 10%;
+  padding-right: 10%;
   text-align: center;
   &.active {
     //display: block;
     opacity: 1;
-    z-index: 100;
+    // z-index: 100;
   }
 }
 
@@ -165,6 +168,9 @@ body {
   p {
     margin: 0 10px 0 0;
   }
+}
+
+.post-content p {
 }
 
 @media (max-width: 768px) {
@@ -191,6 +197,7 @@ body {
     flex: 0 0 98%;
     margin-top: 10px;
     padding-top: 10px;
+    //height: 120vh;
   }
 
   .side-bottom {
@@ -210,5 +217,41 @@ body {
   .tag,
   .auth {
     margin: 5px 0;
+  }
+}
+
+@media (max-width: 375px) {
+  .posts {
+    height: 110vh;
+  }
+}
+
+@media (min-width: 376px) and (max-width: 468px) {
+  .posts {
+    height: 100vh;
+  }
+}
+
+@media (min-width: 469px) and (max-width: 591px) {
+  .posts {
+    height: 95vh;
+  }
+}
+
+@media (min-width: 592px) and (max-width: 768px) {
+  .posts {
+    height: 85vh;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1064px) {
+  .posts {
+    height: 130vh;
+  }
+}
+
+@media (min-width: 1065px) {
+  .posts {
+    height: 90vh;
   }
 }
