@@ -167,13 +167,23 @@ addClickListenersToTags();
 
 function generateAuthors() {
   /* find all articles */
+  const articles = document.querySelectorAll(optArticleSelector);
+  console.log(articles);
   /* for each article create loop */
-  /* find wrapper for author name  */
-  /* create html with empty string */
-  /* get author attribute from "data-author" */
-  /* create author link */
-  /* write author link to wrapper */
-  /* close loop */
+  for (const article of articles) {
+    /* find wrapper for author name  */
+    const authWrapper = article.querySelector(optAuthorSelector);
+    console.log(authWrapper);
+    /* get author attribute from "data-author" */
+    const author = article.getAttribute('data-author');
+    console.log(author);
+    /* create author link */
+    const linkHTML = '<a href="#auth-' + author + '">by ' + author + '</a>';
+    console.log(linkHTML);
+    /* write author link to wrapper */
+    authWrapper.innerHTML = linkHTML;
+    /* close loop */
+  }
 }
 
 generateAuthors();
