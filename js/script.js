@@ -189,27 +189,48 @@ function generateAuthors() {
 generateAuthors();
 
 function authorClickHandler(event) {
-  /* write vendor defoult for event */
+  /* write prevent defoult for event */
+  event.preventDefault();
   /* create constant clickedElement as a this */
+  const clickedElement = this;
   /* create href constant with "href" atributes of clicked author */
+  const href = clickedElement.getAttribute('href');
+  console.log(href);
   /* make a new constant "author" and extract author's name from the "href" constant */
+  const author = href.replace('#auth-', '');
+  console.log(author);
   /* find all authors links with class active */
+  const activeAuthLinks = document.querySelectorAll('a.active[href^="#auth-"]');
+  console.log(activeAuthLinks);
   /* create loop for each active author link */
-  /* remove class active */
-  /* end loop */
+  for (const activeAuthLink of activeAuthLinks) {
+    /* remove class active */
+    activeAuthLink.classList.remove('active');
+    /* end loop */
+  }
   /* find all author links with "href" attribute equal to the "href" constant */
+  const authLinks = document.querySelectorAll('a[href="' + href + '"]');
+  console.log(authLinks);
   /* START LOOP: for each found author link */
-  /* add class active */
-  /* end loop for each active author link */
+  for (const authLink of authLinks) {
+    /* add class active */
+    authLink.classList.add('active');
+    /* end loop for each active author link */
+  }
   /* execute function "generateTitleLinks" with article selector as argument */
   generateTitleLinks('[data-author="' + author + '"]');
 }
 
 function addClickListenersToAuthors() {
   /* find all links authors */
+  const links = document.querySelectorAll('.post .post-author a');
+  console.log(links);
   /*start loop for each link */
-  /* add authorClickHandler as event listenter for the link */
-  /* end loop for each link */
+  for (const link of links) {
+    /* add authorClickHandler as event listenter for the link */
+    link.addEventListener('click', authorClickHandler);
+    /* end loop for each link */
+  }
 }
 
 addClickListenersToAuthors();
