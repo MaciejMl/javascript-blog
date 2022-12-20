@@ -82,6 +82,19 @@ function generateTitleLinks(customSelector = '') {
 }
 generateTitleLinks();
 
+function calculateTagsParams(tags) {
+  let params = {
+    max: 0,
+    min: 99999,
+  };
+
+  for (let tag in tags) {
+    params.max = Math.max(params.max, tags[tag]);
+    params.min = Math.min(params.min, tags[tag]);
+  }
+  return params;
+}
+
 function generateTags() {
   /* [NEW] create a new variable allTags with an empty object */
   let allTags = {};
@@ -128,6 +141,9 @@ function generateTags() {
   console.log(tagList);
   /* [NEW] add html from allTags to tagList */
   //let dd = (tagList.innerHTML = allTags.join(' '));
+
+  const tagsParams = calculateTagsParams(allTags);
+  console.log('tagsParams:', tagsParams);
 
   /* [NEW] create variable for all links HTML code */
   let allTagsHTML = '';
@@ -226,7 +242,7 @@ function authorClickHandler(event) {
   const clickedElement = this;
   /* create href constant with "href" atributes of clicked author */
   const href = clickedElement.getAttribute('href');
-  /  / / console.log(href);
+  // / console.log(href);
   /* make a new constant "author" and extract author's name from the "href" constant */
   const author = href.replace('#auth-', '');
   //console.log(author);
