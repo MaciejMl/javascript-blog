@@ -63,6 +63,16 @@ body {
   }
 }
 
+.tag-size-2,
+.tag-size-3 {
+  font-size: 22px;
+}
+
+.tag-size-4,
+.tag-size-5 {
+  font-size: 30px;
+}
+
 /* Layout */
 
 .wrapper {
@@ -171,6 +181,11 @@ body {
 }
 
 .post-content p {
+}
+
+.cloud {
+  display: inline-block;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 @media (max-width: 768px) {
