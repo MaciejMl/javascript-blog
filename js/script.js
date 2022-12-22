@@ -39,7 +39,8 @@ const optArticleSelector = '.post',
   optAuthorSelector = '.post .post-author',
   optTagsListSelector = '.tags.list',
   optCloudClassCount = 4,
-  optCloudClassPrefix = 'tag-size-';
+  optCloudClassPrefix = 'tag-size-',
+  optAuthorsListSelector = '.list.authors';
 
 function generateTitleLinks(customSelector = '') {
   /* remove content of links list on the left side of the column  */
@@ -228,6 +229,9 @@ function addClickListenersToTags() {
 addClickListenersToTags();
 
 function generateAuthors() {
+  /* [new] create new variable allAuthors with empty object */
+  let allAuthors = {};
+  let allAuthorsHTML = '';
   /* find all articles */
   const articles = document.querySelectorAll(optArticleSelector);
   //console.log(articles);
@@ -242,10 +246,33 @@ function generateAuthors() {
     /* create author link */
     const linkHTML = '<a href="#auth-' + author + '">by ' + author + '</a>';
     //console.log(linkHTML);
+    /* [new] check if new link is Not in allAuthors */
+    if (!allAuthors[author]) {
+      allAuthors[author] = 1;
+    } else {
+      allAuthors[author]++;
+    }
     /* write author link to wrapper */
     authWrapper.innerHTML = linkHTML;
-    /* close loop */
   }
+  /* [new] find  list of authors in right collumn */
+  const authList = document.querySelector(optAuthorsListSelector);
+  console.log(authList);
+  let allAuthList = document.querySelectorAll(optAuthorSelector);
+  console.log(allAuthList);
+  /* close loop */
+  for (let author in allAuthors) {
+    const authorsLink =
+      '<li><a href="#auth-' +
+      author +
+      '"><span class="author-name">' +
+      author +
+      ' ( ' +
+      allAuthors[author] +
+      ' )</span></a></li>';
+    allAuthorsHTML += authorsLink;
+  }
+  authList.innerHTML = allAuthorsHTML;
 }
 
 generateAuthors();
