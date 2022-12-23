@@ -231,7 +231,6 @@ addClickListenersToTags();
 function generateAuthors() {
   /* [new] create new variable allAuthors with empty object */
   let allAuthors = {};
-  let allAuthorsHTML = '';
   /* find all articles */
   const articles = document.querySelectorAll(optArticleSelector);
   //console.log(articles);
@@ -258,8 +257,9 @@ function generateAuthors() {
   /* [new] find  list of authors in right collumn */
   const authList = document.querySelector(optAuthorsListSelector);
   console.log(authList);
-  let allAuthList = document.querySelectorAll(optAuthorSelector);
-  console.log(allAuthList);
+  //let allAuthList = document.querySelectorAll(optAuthorSelector);
+  let allAuthorsHTML = '';
+  //console.log(allAuthList);
   /* close loop */
   for (let author in allAuthors) {
     const authorsLink =
