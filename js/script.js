@@ -1,5 +1,29 @@
 'use strict';
 
+const templates = {
+  articleLink: Handlebars.compile(
+    document.querySelector('#template-article-link').innerHTML
+  ),
+  tagLink: Handlebars.compile(
+    document.querySelector('#template-tag-link').innerHTML
+  ),
+  authorLink: Handlebars.compile(
+    document.querySelector('#template-author-link').innerHTML
+  ),
+};
+
+const optArticleSelector = '.post',
+  optTitleSelector = '.post-title',
+  optTitleListSelector = '.titles',
+  optArticleTagsSelector = '.post-tags .list',
+  optAuthorSelector = '.post .post-author',
+  optTagsListSelector = '.tags.list',
+  optCloudClassCount = 4,
+  optCloudClassPrefix = 'tag-size-',
+  optAuthorsListSelector = '.list.authors';
+
+const opts = {};
+
 const loogoo = document.querySelector('.logo-1');
 loogoo.style.color = 'firebrick';
 
@@ -32,16 +56,6 @@ const titleClickHandler = function (event) {
   foundAricle.classList.add('active');
 };
 
-const optArticleSelector = '.post',
-  optTitleSelector = '.post-title',
-  optTitleListSelector = '.titles',
-  optArticleTagsSelector = '.post-tags .list',
-  optAuthorSelector = '.post .post-author',
-  optTagsListSelector = '.tags.list',
-  optCloudClassCount = 4,
-  optCloudClassPrefix = 'tag-size-',
-  optAuthorsListSelector = '.list.authors';
-
 function generateTitleLinks(customSelector = '') {
   /* remove content of links list on the left side of the column  */
   const titleList = document.querySelector(optTitleListSelector);
@@ -63,12 +77,15 @@ function generateTitleLinks(customSelector = '') {
     /* get the title from the title element */
 
     /* create html code of this link and save it to constant, */
-    const linkHTML =
+    const linkHTMLData = { id: articleId, title: articleTitle };
+    const linkHTML = templates.articleLink(linkHTMLData);
+
+    /*const linkHTML =
       '<li><a href="#' +
       articleId +
       '"><span>' +
       articleTitle +
-      '</span></a></li>';
+      '</span></a></li>';*/
     // console.log(linkHTML);
     /* put created html code to list of links in the left column */
     /*titleList.innerHTML = titleList.innerHTML + linkHTML;*/
@@ -127,8 +144,10 @@ function generateTags() {
     /* START LOOP: for each tag */
     for (const tag of tagsArray) {
       /* generate HTML of the link */
-      const HTMLlink =
-        '<li><a href="#tag-' + tag + '">' + tag + '&nbsp</a></li>';
+      const HTMLlinkData = { 'tag-word': tag };
+      const HTMLlink = templates.tagLink(HTMLlinkData);
+      /*const HTMLlink =
+        '<li><a href="#tag-' + tag + '">' + tag + '&nbsp</a></li>';*/
       //console.log(HTMLlink);
       /* add generated code to html variable */
       html = html + HTMLlink;
@@ -243,7 +262,10 @@ function generateAuthors() {
     const author = article.getAttribute('data-author');
     //console.log(author);
     /* create author link */
-    const linkHTML = '<a href="#auth-' + author + '">by ' + author + '</a>';
+    const linkHTMLData = { 'author-name': author };
+    const linkHTML = templates.authorLink(linkHTMLData);
+
+    /*const linkHTML = '<a href="#auth-' + author + '">by ' + author + '</a>';*/
     //console.log(linkHTML);
     /* [new] check if new link is Not in allAuthors */
     if (!allAuthors[author]) {
@@ -257,9 +279,7 @@ function generateAuthors() {
   /* [new] find  list of authors in right collumn */
   const authList = document.querySelector(optAuthorsListSelector);
   console.log(authList);
-  //let allAuthList = document.querySelectorAll(optAuthorSelector);
   let allAuthorsHTML = '';
-  //console.log(allAuthList);
   /* close loop */
   for (let author in allAuthors) {
     const authorsLink =
