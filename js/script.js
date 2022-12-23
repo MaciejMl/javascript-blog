@@ -10,6 +10,9 @@ const templates = {
   authorLink: Handlebars.compile(
     document.querySelector('#template-author-link').innerHTML
   ),
+  tagCloudLink: Handlebars.compile(
+    document.querySelector('#template-tagCloud-link').innerHTML
+  ),
 };
 
 const optArticleSelector = '.post',
@@ -119,7 +122,8 @@ function calculateTagClass(count, params) {
   const classNumber = Math.floor(
     ((count - params.min) / (params.max - params.min)) * optCloudClassCount + 1
   );
-  return 'class="' + optCloudClassPrefix + classNumber + '"';
+  //return 'class="' + optCloudClassPrefix + classNumber + '"';
+  return optCloudClassPrefix + classNumber;
 }
 
 function generateTags() {
@@ -175,26 +179,34 @@ function generateTags() {
   console.log('tagsParams:', tagsParams);
 
   /* [NEW] create variable for all links HTML code */
-  let allTagsHTML = '';
+  //let allTagsHTML = '';
+  const allTagsData = { tags: [] };
   /* [NEW] START LOOP: for each tag in allTags: */
   for (let tag in allTags) {
-    const tagLinkHTML =
+    /*const tagLinkHTML =
       '<li class="cloud"><a ' +
       calculateTagClass(allTags[tag], tagsParams) +
       ' href="#tag-' +
       tag +
       '">' +
       tag +
-      '&nbsp</a></li>';
+      '&nbsp</a></li>';*/
     /* [NEW] generate code of a link and add it to allTagsHTML */
-    allTagsHTML += tagLinkHTML;
+    //allTagsHTML += tagLinkHTML;
+    allTagsData.tags.push({
+      tag: tag,
+      count: allTags[tag],
+      className: calculateTagClass(allTags[tag], tagsParams),
+    });
+
     /* [NEW] END LOOP: for each tag in allTags: */
   }
 
   /*[NEW] add HTML from allTagsHTML to tagList */
-  tagList.innerHTML = allTagsHTML;
+  //tagList.innerHTML = allTagsHTML;
+  tagList.innerHTML = templates.tagCloudLink(allTagsData);
 
-  console.log(allTags);
+  console.log(allTagsData);
 }
 
 generateTags();
