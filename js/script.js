@@ -13,6 +13,9 @@ const templates = {
   tagCloudLink: Handlebars.compile(
     document.querySelector('#template-tagCloud-link').innerHTML
   ),
+  authorListLink: Handlebars.compile(
+    document.querySelector('#template-authorsList-link').innerHTML
+  ),
 };
 
 const optArticleSelector = '.post',
@@ -206,7 +209,7 @@ function generateTags() {
   //tagList.innerHTML = allTagsHTML;
   tagList.innerHTML = templates.tagCloudLink(allTagsData);
 
-  console.log(allTagsData);
+  //console.log(allTagsData);
 }
 
 generateTags();
@@ -291,20 +294,25 @@ function generateAuthors() {
   /* [new] find  list of authors in right collumn */
   const authList = document.querySelector(optAuthorsListSelector);
   console.log(authList);
-  let allAuthorsHTML = '';
+  const allAuthorsData = { authors: [] };
+  //let allAuthorsHTML = '';
   /* close loop */
   for (let author in allAuthors) {
-    const authorsLink =
+    /*const authorsLink =
       '<li><a href="#auth-' +
       author +
       '"><span class="author-name">' +
       author +
       ' ( ' +
       allAuthors[author] +
-      ' )</span></a></li>';
-    allAuthorsHTML += authorsLink;
+      ' )</span></a></li>';*/
+    //allAuthorsHTML += authorsLink;
+    allAuthorsData.authors.push({
+      author: author,
+      count: allAuthors[author],
+    });
   }
-  authList.innerHTML = allAuthorsHTML;
+  authList.innerHTML = templates.authorListLink(allAuthorsData);
 }
 
 generateAuthors();
