@@ -29,6 +29,7 @@ const opts = {
 const select = {
   all: {
     articles: '.post',
+    activeArticles: '.post.active',
     linksTo: {
       tags: 'a[href^="#tag-"]',
       authors: 'a[href^="#auth-"]',
@@ -40,6 +41,7 @@ const select = {
   },
   listOf: {
     titles: '.titles',
+    titlesLinks: '.titles a.active',
     tags: '.tags.list',
     authors: '.authors.list',
   },
@@ -64,7 +66,7 @@ const titleClickHandler = function (event) {
   //console.log(event);
 
   /* [DONE] remove class 'active' from all article links  */
-  const activeLinks = document.querySelectorAll('.titles a.active');
+  const activeLinks = document.querySelectorAll(select.listOf.titlesLinks);
 
   for (const activeLink of activeLinks) {
     activeLink.classList.remove('active');
@@ -74,7 +76,7 @@ const titleClickHandler = function (event) {
   //console.log('clickedElement: ', clickedElement);
 
   /* [DONE] remove class 'active' from all articles */
-  const activeArticles = document.querySelectorAll('.post.active');
+  const activeArticles = document.querySelectorAll(select.all.activeArticles);
 
   for (const activeArticle of activeArticles) {
     activeArticle.classList.remove('active');
@@ -275,7 +277,7 @@ function tagClickHandler(event) {
 
 function addClickListenersToTags() {
   /* find all links to tags */
-  const links = document.querySelectorAll('.post-tags .list a');
+  const links = document.querySelectorAll(select.all.linksTo.tags);
   //console.log(links);
   /* START LOOP: for each link */
   for (const link of links) {
@@ -377,7 +379,7 @@ function authorClickHandler(event) {
 
 function addClickListenersToAuthors() {
   /* find all links authors */
-  const links = document.querySelectorAll('.post .post-author a');
+  const links = document.querySelectorAll(select.all.linksTo.authors);
   //console.log(links);
   /*start loop for each link */
   for (const link of links) {
@@ -388,31 +390,3 @@ function addClickListenersToAuthors() {
 }
 
 addClickListenersToAuthors();
-
-function addClickListenersToListTags() {
-  /* find all links to tags */
-  const links = document.querySelectorAll('.list.tags a');
-  //console.log(links);
-  /* START LOOP: for each link */
-  for (const link of links) {
-    /* add tagClickHandler as event listener for that link */
-    link.addEventListener('click', tagClickHandler);
-    /* END LOOP: for each link */
-  }
-}
-
-addClickListenersToListTags();
-
-function addClickListenersToListAuthors() {
-  /* find all links authors */
-  const links = document.querySelectorAll('.list.authors a');
-  //console.log(links);
-  /*start loop for each link */
-  for (const link of links) {
-    /* add authorClickHandler as event listenter for the link */
-    link.addEventListener('click', authorClickHandler);
-    /* end loop for each link */
-  }
-}
-
-addClickListenersToListAuthors();
