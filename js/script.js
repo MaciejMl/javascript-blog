@@ -388,3 +388,31 @@ function addClickListenersToAuthors() {
 }
 
 addClickListenersToAuthors();
+
+function addClickListenersToListTags() {
+  /* find all links to tags */
+  const links = document.querySelectorAll('.list.tags a');
+  //console.log(links);
+  /* START LOOP: for each link */
+  for (const link of links) {
+    /* add tagClickHandler as event listener for that link */
+    link.addEventListener('click', tagClickHandler);
+    /* END LOOP: for each link */
+  }
+}
+
+addClickListenersToListTags();
+
+function addClickListenersToListAuthors() {
+  /* find all links authors */
+  const links = document.querySelectorAll('.list.authors a');
+  //console.log(links);
+  /*start loop for each link */
+  for (const link of links) {
+    /* add authorClickHandler as event listenter for the link */
+    link.addEventListener('click', authorClickHandler);
+    /* end loop for each link */
+  }
+}
+
+addClickListenersToListAuthors();

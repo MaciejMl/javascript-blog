@@ -28,7 +28,7 @@
             "off"
         ],
         "no-prototype-builtins": ["off"]
-    }
+    },
 
     "globals": {
       "Handlebars": false
