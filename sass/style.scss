@@ -68,9 +68,10 @@ body {
   font-size: 22px;
 }
 
-.tag-size-4,
-.tag-size-5 {
+.list.tags .tag-size-4,
+.list.tags .tag-size-5 {
   font-size: 30px;
+  color: goldenrod;
 }
 
 /* Layout */

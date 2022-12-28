@@ -31,7 +31,7 @@ const select = {
     articles: '.post',
     linksTo: {
       tags: 'a[href^="#tag-"]',
-      authors: 'a[href^="#author-"]',
+      authors: 'a[href^="#auth-"]',
     },
   },
   article: {
@@ -349,7 +349,7 @@ function authorClickHandler(event) {
   const clickedElement = this;
   /* create href constant with "href" atributes of clicked author */
   const href = clickedElement.getAttribute('href');
-  // / console.log(href);
+  //console.log(href);
   /* make a new constant "author" and extract author's name from the "href" constant */
   const author = href.replace('#auth-', '');
   //console.log(author);
